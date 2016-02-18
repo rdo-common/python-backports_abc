@@ -13,7 +13,7 @@ Source0:        https://pypi.python.org/packages/source/b/%{srcname}/%{srcname}-
 Source1:        https://raw.githubusercontent.com/cython/backports_abc/master/LICENSE
 
 BuildArch:      noarch
-BuildRequires:  python2-devel python3-devel
+BuildRequires:  python2-devel python%{python3_pkgversion}-devel
 
 %description
 %{sum}.
@@ -26,11 +26,11 @@ Summary:        %{sum}
 %{sum}.
 
 
-%package -n python3-%{srcname}
+%package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{sum}
-%{?python_provide:%python_provide python3-%{srcname}}
+%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
-%description -n python3-%{srcname}
+%description -n python%{python3_pkgversion}-%{srcname}
 %{sum}.
 
 
@@ -62,7 +62,7 @@ cp -p %SOURCE1 .
 %doc CHANGES.rst README.rst
 %{python2_sitelib}/*
 
-%files -n python3-%{srcname}
+%files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc CHANGES.rst README.rst
 %{python3_sitelib}/%{srcname}.py
@@ -71,6 +71,9 @@ cp -p %SOURCE1 .
 
 
 %changelog
+* Thu Feb 18 2016 Orion Poplawski <orion@cora.nwra.com> - 0.4-3
+- Use %%{python3_pkgversion}
+
 * Tue Feb 2 2016 Orion Poplawski <orion@cora.nwra.com> - 0.4-2
 - Fix python3 package file ownership
 
