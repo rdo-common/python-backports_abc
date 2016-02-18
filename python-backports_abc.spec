@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        %{sum}
 
 License:        Python
