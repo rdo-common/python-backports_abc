@@ -14,6 +14,7 @@ Source1:        https://raw.githubusercontent.com/cython/backports_abc/master/LI
 
 BuildArch:      noarch
 BuildRequires:  python2-devel python%{python3_pkgversion}-devel
+BuildRequires:  python-setuptools python%{python3_pkgversion}-setuptools
 
 %description
 %{sum}.
