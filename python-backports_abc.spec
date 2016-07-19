@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        %{sum}
 
 License:        Python
@@ -72,6 +72,9 @@ cp -p %SOURCE1 .
 
 
 %changelog
+* Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4-4
+- https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
+
 * Thu Feb 18 2016 Orion Poplawski <orion@cora.nwra.com> - 0.4-3
 - Use %%{python3_pkgversion}
 
