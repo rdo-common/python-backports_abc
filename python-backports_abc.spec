@@ -2,15 +2,13 @@
 %global sum A backport of recent additions to the 'collections.abc' module
 
 Name:           python-%{srcname}
-Version:        0.4
-Release:        4%{?dist}
+Version:        0.5
+Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        Python
-URL:            https://pypi.python.org/pypi/%{srcname}
-Source0:        https://pypi.python.org/packages/source/b/%{srcname}/%{srcname}-%{version}.tar.gz
-# Should be in the next release
-Source1:        https://raw.githubusercontent.com/cython/backports_abc/master/LICENSE
+URL:            https://pypi.python.org/pypi/backports_abc
+Source0:        https://files.pythonhosted.org/packages/source/b/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python2-devel python%{python3_pkgversion}-devel
@@ -37,7 +35,6 @@ Summary:        %{sum}
 
 %prep
 %autosetup -n %{srcname}-%{version}
-cp -p %SOURCE1 .
 
 
 %build
@@ -46,9 +43,6 @@ cp -p %SOURCE1 .
 
 
 %install
-# Must do the python2 install first because the scripts in /usr/bin are
-# overwritten with every setup.py install, and in general we want the
-# python3 version to be the default.
 %py2_install
 %py3_install
 
@@ -72,6 +66,9 @@ cp -p %SOURCE1 .
 
 
 %changelog
+* Tue Nov 22 2016 Orion Poplawski <orion@cora.nwra.com> - 0.5-1
+- Update to 0.5
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4-4
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
