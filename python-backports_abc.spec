@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        Python
@@ -66,6 +66,9 @@ Summary:        %{sum}
 
 
 %changelog
+* Mon Dec 12 2016 Stratakis Charalampos <cstratak@redhat.com> - 0.5-2
+- Rebuild for Python 3.6
+
 * Tue Nov 22 2016 Orion Poplawski <orion@cora.nwra.com> - 0.5-1
 - Update to 0.5
 
