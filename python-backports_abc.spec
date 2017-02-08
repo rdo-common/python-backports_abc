@@ -1,6 +1,10 @@
 %global srcname backports_abc
 %global sum A backport of recent additions to the 'collections.abc' module
 
+%if 0%{?fedora}
+%global with_python3 1
+%endif
+
 Name:           python-%{srcname}
 Version:        0.5
 Release:        2%{?dist}
@@ -11,8 +15,8 @@ URL:            https://pypi.python.org/pypi/backports_abc
 Source0:        https://files.pythonhosted.org/packages/source/b/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python2-devel python%{python3_pkgversion}-devel
-BuildRequires:  python-setuptools python%{python3_pkgversion}-setuptools
+BuildRequires:  python2-devel
+BuildRequires:  python-setuptools
 
 %description
 %{sum}.
@@ -25,12 +29,16 @@ Summary:        %{sum}
 %{sum}.
 
 
+%if 0%{?with_python3}
 %package -n python%{python3_pkgversion}-%{srcname}
 Summary:        %{sum}
+BuildRequires:   python%{python3_pkgversion}-devel
+BuildRequires:   python%{python3_pkgversion}-setuptools
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
 %description -n python%{python3_pkgversion}-%{srcname}
 %{sum}.
+%endif
 
 
 %prep
@@ -39,17 +47,23 @@ Summary:        %{sum}
 
 %build
 %py2_build
+%if 0%{?with_python3}
 %py3_build
+%endif
 
 
 %install
 %py2_install
+%if 0%{?with_python3}
 %py3_install
+%endif
 
 
 %check
 %{__python2} setup.py test
+%if 0%{?with_python3}
 %{__python3} setup.py test
+%endif
 
 
 %files -n python2-%{srcname}
@@ -57,12 +71,14 @@ Summary:        %{sum}
 %doc CHANGES.rst README.rst
 %{python2_sitelib}/*
 
+%if 0%{?with_python3}
 %files -n python%{python3_pkgversion}-%{srcname}
 %license LICENSE
 %doc CHANGES.rst README.rst
 %{python3_sitelib}/%{srcname}.py
 %{python3_sitelib}/%{srcname}*.egg-info/
 %{python3_sitelib}/__pycache__/*
+%endif
 
 
 %changelog
